@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEK USIA</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='favicon_round.png') }}?v=4" type="image/png">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon_round.png') }}?v=4" type="image/png">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container flex-between">
+            <div class="brand">
+                <div class="brand-icon-wrapper">
+                    <img src="{{ url_for('static', filename='favicon.png') }}" alt="AI DELON" class="brand-icon">
+                </div>
+                <span>AI DELON</span>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link">Beranda</a>
+                <a href="/usia" class="nav-link active">Hitung Usia</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h1 class="page-title">Hitung Usia Anda</h1>
+            <p class="muted">Isi tahun lahir Anda, lalu kami tampilkan usia dan fakta menarik seputar Politik,
+                Ekonomi dan Teknologi pada
+                tahun tersebut.
+            </p>
+
+            <form method="POST" action="/usia" class="form-grid">
+                <div class="form-field">
+                    <label for="tahun_lahir">Tahun Lahir</label>
+                    <input type="number" id="tahun_lahir" name="tahun_lahir" required min="1500" max="2024"
+                        placeholder="Masukkan 1500-2024" value="{% if tahun_lahir %}{{ tahun_lahir }}{% endif %}">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="button primary full">Hitung</button>
+                </div>
+            </form>
+
+            {% if usia is not none and usia > 0 %}
+            <section class="result">
+                <div class="result-header">
+                    <div>
+                        <h2 class="result-title">Hasil</h2>
+                        <p class="muted small">Tahun lahir anda adalah <strong>{{ tahun_lahir }}</strong> • Usia Anda
+                            sekarang
+                            adalah <strong>{{
+                                usia }}</strong> tahun</p>
+                    </div>
+                </div>
+
+                <div class="fakta">
+                    <h3>Fakta menarik seputar Politik, Ekonomi dan Teknologi {{ tahun_lahir }} Tahun</h3>
+                    <div class="fakta-list">{{ ai_output }}</div>
+                </div>
+            </section>
+            {% elif usia is not none and usia <= 0 %} <p class="error">Masukkan tahun lahir yang valid.</p>
+                {% endif %}
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© <span id="year"></span> AI DELON.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>

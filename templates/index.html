@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI DELON</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='favicon_round.png') }}?v=4" type="image/png">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon_round.png') }}?v=4" type="image/png">
+
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container flex-between">
+            <div class="brand">
+                <div class="brand-icon-wrapper">
+                    <img src="{{ url_for('static', filename='favicon.png') }}" alt="AI DELON" class="brand-icon">
+                </div>
+                <span>AI DELON</span>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link active">Beranda</a>
+                <a href="/usia" class="nav-link">Hitung Usia</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="hero">
+        <div class="container">
+            <div class="hero-card">
+                <h1 class="hero-title">Temukan Usia Anda & Fakta menarik seputar Politik, Ekonomi dan Teknologi
+                    dunia</h1>
+                <p class="hero-subtitle">Masukkan tahun lahir Anda dan dapatkan rangkuman peristiwa Politik,
+                    Ekonomi dan inovasi
+                    teknologi pada tahun tersebut.</p>
+                <div class="hero-cta">
+                    <a class="button primary" href="/usia">Mulai Hitung</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© <span id="year"></span> AI DELON. Dibuat sederhana dan elegan.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
